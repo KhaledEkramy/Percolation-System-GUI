@@ -1,14 +1,21 @@
-import edu.princeton.cs.algs4.WeightedQuickUnionUF;
+import java.util.Random;
 
 public class Percolation {
     private final boolean[][] grid;
-    private final WeightedQuickUnionUF wqufGrid;
-    private final WeightedQuickUnionUF wqufFull;
+    private final WeightedQuickUnionWithPathCompressionUF wqufGrid;
+    private final WeightedQuickUnionWithPathCompressionUF wqufFull;
     private final int gridSize;
     private final int virtualTop;
     private final int virtualBottom;
     private int openSites;
     private final int[][] neighbors = { {-1, 0}, {1, 0}, {0, -1}, {0, 1} };
+    private static final Random random;
+
+    static {
+        long seed = System.currentTimeMillis();
+        random = new Random(seed);
+    }
+
     public Percolation(int n) {
         if (n <= 0) {
             throw new IllegalArgumentException("Enter number greater than 0");
@@ -16,8 +23,8 @@ public class Percolation {
 
         this.gridSize = n;
         this.grid = new boolean[gridSize][gridSize];
-        this.wqufGrid = new WeightedQuickUnionUF(gridSize * gridSize + 2); // includes virtual top and bottom
-        this.wqufFull = new WeightedQuickUnionUF(gridSize * gridSize + 1); // includes virtual top
+        this.wqufGrid = new WeightedQuickUnionWithPathCompressionUF(gridSize * gridSize + 2); // includes virtual top and bottom
+        this.wqufFull = new WeightedQuickUnionWithPathCompressionUF(gridSize * gridSize + 1); // includes virtual top
         this.virtualTop = gridSize * gridSize;
         this.virtualBottom = gridSize * gridSize + 1;
         this.openSites = 0;
@@ -100,4 +107,8 @@ public class Percolation {
         return wqufGrid.connected(virtualTop, virtualBottom);
     }
 
+    public static int uniformInt(int n) { // return a random number between 0 and n (exclusive)
+        if (n <= 0) throw new IllegalArgumentException("argument must be positive: " + n);
+        return random.nextInt(n);
+    }
 }

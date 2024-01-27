@@ -1,10 +1,9 @@
-
-public class WeightedQuickUnionUF{
+public class WeightedQuickUnionWithPathCompressionUF {
     private int id[] ;
     private int size[] ;
     private int maxElement[] ;
 
-    public WeightedQuickUnionUF(int N){
+    public WeightedQuickUnionWithPathCompressionUF(int N){
         this.id = new int[N];
         this.size = new int[N];
         this.maxElement = new int[N];
