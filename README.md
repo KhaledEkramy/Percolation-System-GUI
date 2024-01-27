@@ -2,7 +2,7 @@
 
 ## Overview
 
-The "Percolation System GUI" project is designed to provide a graphical user interface (GUI) for visualizing and interacting with the Percolation System. The core functionality is implemented in the Java class `Percolation`, utilizing the `edu.princeton.cs.algs4.WeightedQuickUnionUF` class for union-find operations.
+The "Percolation System GUI" project is designed to provide a graphical user interface (GUI) for visualizing and interacting with the Percolation System. The core functionality is implemented in the Java class `Percolation`.
 
 ## Features
 
@@ -16,22 +16,98 @@ The "Percolation System GUI" project is designed to provide a graphical user int
 
 - **Statistical Information:** View real-time data, including the number of open sites, to track system evolution.
 
-## Technologies
-
-- Java
-- `edu.princeton.cs.algs4.WeightedQuickUnionUF` for union-find operations.
 
 ## Repository Structure
 
 - **src:** Contains the Java source code, including the `Percolation` class and potentially additional classes for GUI implementation.
   
-- **docs:** Documentation explaining the percolation algorithm, GUI functionalities, and usage instructions.
+- **docs:** Documentation explaining the percolation algorithm, GUI functionalities, and usage instructions.", 'which is going to be included in the following Percolation class ``The core class for the Application``.
 
 - **resources:** Graphical assets or resources used in the GUI.
 
-## Getting Started
 
-Refer to the documentation in the `docs` folder for instructions on setting up the development environment, understanding the percolation algorithm, and interacting with the GUI.
+### Percolation Class API
+
+#### Constructor
+
+```java
+/**
+ * Creates a Percolation object for a grid of specified size.
+ * @param n Size of the grid (n x n).
+ * @throws IllegalArgumentException if n is less than or equal to 0.
+ */
+public Percolation(int n);
+```
+
+#### Open Method
+
+```java
+/**
+ * Opens a site at the specified row and column if it is not already open.
+ * @param row Row index (1-based).
+ * @param col Column index (1-based).
+ * @throws IndexOutOfBoundsException if the site is out of bounds.
+ */
+public void open(int row, int col);
+```
+
+#### Is Open Method
+
+```java
+/**
+ * Checks if a site at the specified row and column is open.
+ * @param row Row index (1-based).
+ * @param col Column index (1-based).
+ * @return true if the site is open, false otherwise.
+ * @throws IndexOutOfBoundsException if the site is out of bounds.
+ */
+public boolean isOpen(int row, int col);
+```
+
+#### Is Full Method
+
+```java
+/**
+ * Checks if a site at the specified row and column is full.//Means having a mutual connection with any element in top row.
+ * @param row Row index (1-based).
+ * @param col Column index (1-based).
+ * @return true if the site is full, false otherwise.
+ * @throws IndexOutOfBoundsException if the site is out of bounds.
+ */
+public boolean isFull(int row, int col);
+```
+
+#### Number of Open Sites Method
+
+```java
+/**
+ * Gets the number of open sites in the grid.
+ * @return Number of open sites.
+ */
+public int numberOfOpenSites();
+```
+
+#### Percolates Method
+
+```java
+/**
+ * Checks if the system percolates (there is a path from the top to the bottom).
+ * @return true if the system percolates, false otherwise.
+ */
+public boolean percolates();
+```
+
+#### Random Integer Method
+
+```java
+/**
+ * Generates a random integer between 0 (inclusive) and n (exclusive).
+ * @param n Upper bound (exclusive) for the random integer.
+ * @return A random integer.
+ * @throws IllegalArgumentException if n is less than or equal to 0.
+ */
+public static int uniformInt(int n);
+```
 
 ## Usage
 
